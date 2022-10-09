@@ -5,6 +5,8 @@
  * 1. Introduction to Java helpful.
  */
 
+import java.util.ArrayList;
+
 public abstract class Bag {
     /*
      * TODO: Create the following private instance variables
@@ -13,9 +15,10 @@ public abstract class Bag {
      *       - an int named capacity
      *       - an array of Strings named contents
      */
-
-
-
+    private String color;
+    private int numberOfContents;
+    private int capacity;
+    private ArrayList<String> contents = new ArrayList<String>();
 
     /*
      * TODO: Create a constructor that takes two arguments:
@@ -27,9 +30,16 @@ public abstract class Bag {
      * its contents.)
      */
 
-
-
-
+    /**
+     * Creates a new bag with the given color and capacity as arguments.
+     *
+     * @param color is the colour of the bag
+     * @param capacity is the number of items the bag can hold
+     */
+    public Bag(String color, int capacity){
+        this.color = color;
+        this.capacity = capacity;
+    }
     /*
      * TODO: Create a variety of 'getter' functions.
      *       These should be named:
@@ -38,7 +48,32 @@ public abstract class Bag {
      *           - getCapacity
      */
 
+    /**
+     * A getter function for color
+     *
+     * @return the color of the bag
+     */
+    public String getColor(){
+        return this.color;
+    }
 
+    /**
+     * A getter function for e number of contents in the bag
+     *
+     * @return the current number of contents in the bag
+     */
+    public int getNumberOfContents(){
+        return this.numberOfContents;
+    }
+
+    /**
+     * A getter function for the bag's capacity
+     *
+     * @return the maximum number of items the bag can hold
+     */
+    public int getCapacity(){
+        return this.capacity;
+    }
 
 
     /*
@@ -46,9 +81,14 @@ public abstract class Bag {
      *       color of this bag to the given color.
      */
 
-
-
-
+    /**
+     * Sets the color of the bag to a new color
+     *
+     * @param color the new color the bag will be set to
+     */
+    public void setColor(String color){
+        this.color = color;
+    }
 
     /*
      * TODO: Create a method called addItem that takes in a String
@@ -61,8 +101,17 @@ public abstract class Bag {
      *       and false otherwise.
      */
 
-
-
+    /**
+     * Adds an item to the bag if it is not at maximum capacity.
+     *
+     * @param item the item to be added into the bag
+     */
+    public void addItem(String item){
+        if (this.numberOfContents < this.capacity){
+            this.contents.add(item);
+            this.numberOfContents += 1;
+        }
+    }
 
 
     /**
@@ -73,12 +122,15 @@ public abstract class Bag {
      *
      * If there are no items in this Bag, return null.
      *
-     * @return
+     * @return the name of the item removed from the bag
      */
-
-
-
-
+    public String popItem(){
+        if (this.contents.size() == 0){
+            return null;
+        }
+        this.numberOfContents -= 1;
+        return this.contents.remove(this.numberOfContents);
+    }
 
     /**
      * Increase this bag's capacity by n.
@@ -87,7 +139,7 @@ public abstract class Bag {
      */
     public void increaseCapacity(int n) {
         // TODO: Implement this method.
-
+        this.capacity += n;
     }
 
     /**
